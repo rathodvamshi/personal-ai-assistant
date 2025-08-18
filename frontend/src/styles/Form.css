@@ -1,0 +1,110 @@
+/* frontend/src/styles/Form.css */
+.form-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  background-image: linear-gradient(to top right, #e0e7ff, #f3f4f6, #f3f4f6);
+}
+
+.form-container {
+  width: 100%;
+  max-width: 28rem;
+  padding: 2.5rem; /* Increased padding */
+  background-color: white;
+  border-radius: 0.75rem; /* Slightly larger radius */
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* Softer shadow */
+}
+
+.form-container h2 {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: bold;
+  text-align: center;
+  color: #111827;
+  margin-bottom: 2rem; /* Increased margin */
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem; /* Increased space */
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem; /* Increased padding */
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgb(79 70 229 / 0.2); /* Softer focus ring */
+}
+
+.form-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600; /* Bolder text */
+  color: white;
+  background-color: #4f46e5;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0.5rem; /* Added margin */
+}
+
+.form-button:hover {
+  background-color: #4338ca;
+}
+
+.message {
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.error-message {
+  color: #991b1b;
+  background-color: #fee2e2;
+}
+
+.success-message {
+  color: #14532d;
+  background-color: #dcfce7;
+}
+
+.form-switch-link {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #4b5563; /* text-gray-600 */
+}
+
+.form-switch-link a {
+  color: #4f46e5; /* text-indigo-600 */
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.form-switch-link a:hover {
+  color: #3730a3; /* hover:text-indigo-800 */
+  text-decoration: underline;
+}

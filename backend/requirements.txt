@@ -1,0 +1,18 @@
+backend/requirements.txt
+fastapi[all]
+uvicorn[standard]
+
+For password hashing
+passlib[bcrypt]
+
+For JWT creation and validation
+python-jose[cryptography]
+
+For managing environment variables
+pydantic-settings
+
+For MongoDB interaction
+pymongo
+
+For Google Gemini AI
+google-generativeai
