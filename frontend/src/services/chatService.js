@@ -4,7 +4,7 @@ import apiClient from './api';
 
 const chatService = {
   /**
-   * Sends a message to the backend chat endpoint.
+   * Sends a message to the backend chat endpoint using the authenticated client.
    * @param {string} message - The user's message.
    * @returns {Promise} - The Axios promise for the API call.
    */

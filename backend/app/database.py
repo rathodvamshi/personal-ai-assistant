@@ -5,25 +5,36 @@ from pymongo.collection import Collection
 from app.config import settings
 
 class Database:
-    """
-    Handles the connection to the MongoDB database and provides access to collections.
-    """
     def __init__(self):
-        # The MongoClient is initialized only once.
         self.client = MongoClient(settings.DATABASE_URL)
-        # We explicitly select the database named "assistant_db".
-        # You can change "assistant_db" to whatever you named it in your .env file.
         self.db = self.client["assistant_db"] 
 
     def get_user_collection(self) -> Collection:
-        """Returns a reference to the 'users' collection."""
         return self.db.users
+        
+    def get_user_profile_collection(self) -> Collection:
+        return self.db.user_profiles
 
-# Create a single instance of the Database class to be used across the application.
-# This pattern ensures we don't open multiple connections unnecessarily.
+    def get_chat_log_collection(self) -> Collection:
+        """Returns a reference to the 'chat_logs' collection."""
+        return self.db.chat_logs
+
+    def get_tasks_collection(self) -> Collection:
+        """Returns a reference to the 'tasks' collection."""
+        return self.db.tasks
+
 db_client = Database()
 
-# A dependency function to be used with FastAPI's dependency injection system.
-# This makes it easy to get a collection object in our route handlers.
 def get_user_collection() -> Collection:
     return db_client.get_user_collection()
+
+def get_user_profile_collection() -> Collection:
+    return db_client.get_user_profile_collection()
+
+def get_chat_log_collection() -> Collection:
+    """Dependency function for chat logs."""
+    return db_client.get_chat_log_collection()
+
+def get_tasks_collection() -> Collection:
+    """Dependency function for tasks."""
+    return db_client.get_tasks_collection()

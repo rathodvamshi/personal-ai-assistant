@@ -1,7 +1,7 @@
 // frontend/src/components/Dashboard.js
 
 import React, { useState, useEffect, useRef } from 'react';
-import chatService from '../services/chatService';
+import chatService from '../services/chatService'; // Use the new dedicated service
 import authService from '../services/auth';
 import '../styles/Dashboard.css';
 
@@ -42,13 +42,21 @@ const Dashboard = () => {
     setIsLoading(true);
 
     try {
+      // The call now uses the authenticated chatService
       const response = await chatService.sendMessage(input);
-      const assistantMessage = { sender: 'assistant', text: response.data.response };
-      setMessages(prev => [...prev, assistantMessage]);
+      
+      if (response && response.data && typeof response.data.response !== 'undefined') {
+        const assistantMessage = { sender: 'assistant', text: response.data.response };
+        setMessages(prev => [...prev, assistantMessage]);
+      } else {
+        throw new Error("Invalid response structure from server.");
+      }
+
     } catch (error) {
+      console.error("Error sending message:", error);
+      
       const errorMessage = { sender: 'assistant', text: 'Sorry, I encountered an error. Please try again.' };
       setMessages(prev => [...prev, errorMessage]);
-      console.error("Error sending message:", error);
     } finally {
       setIsLoading(false);
     }

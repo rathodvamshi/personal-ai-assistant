@@ -3,7 +3,7 @@
 import axios from 'axios';
 import authService from './auth';
 
-// Create a new Axios instance
+// Create a new Axios instance for authenticated API calls
 const apiClient = axios.create({
   baseURL: 'http://localhost:8000', // Your backend base URL
   headers: {
