@@ -16,6 +16,7 @@ apiClient.interceptors.request.use(
   (config) => {
     const user = authService.getCurrentUser();
     if (user && user.access_token) {
+      // The backend expects the token in the 'Authorization' header
       config.headers['Authorization'] = 'Bearer ' + user.access_token;
     }
     return config;
