@@ -21,15 +21,26 @@ const Home = () => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
+        // Skip heavy 3D setup in tests
+        if (process.env.NODE_ENV === 'test') {
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
+
         // Setup 3D background animation
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 15;
+        if (camera && camera.position) {
+            camera.position.z = 15;
+        }
 
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         const mount = mountRef.current;
-        mount.appendChild(renderer.domElement);
+        if (mount && renderer.domElement && typeof mount.appendChild === 'function') {
+            mount.appendChild(renderer.domElement);
+        }
 
         // Lights
         const directionalLight = new THREE.DirectionalLight(0x3b82f6, 1);
